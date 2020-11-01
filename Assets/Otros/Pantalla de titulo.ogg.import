@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Pantalla de titulo.ogg-faa5d6207b2f5a260b156e3dadf52402.oggstr"
+
+[deps]
+
+source_file="res://Assets/Otros/Pantalla de titulo.ogg"
+dest_files=[ "res://.import/Pantalla de titulo.ogg-faa5d6207b2f5a260b156e3dadf52402.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

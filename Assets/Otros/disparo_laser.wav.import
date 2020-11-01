@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/disparo_laser.wav-01edb6088bb39df6206b983e76677655.sample"
+
+[deps]
+
+source_file="res://Assets/Otros/disparo_laser.wav"
+dest_files=[ "res://.import/disparo_laser.wav-01edb6088bb39df6206b983e76677655.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

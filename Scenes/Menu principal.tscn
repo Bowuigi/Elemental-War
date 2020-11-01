@@ -1,0 +1,183 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Otros/Basic theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Menu principal.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Play Button.png" type="Texture" id=3]
+[ext_resource path="res://Assets/JosefinSans-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Otros/Pantalla de titulo.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sprites/Music Button.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Music Toggle.gd" type="Script" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 80
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 22, 22 )
+margin = Rect2( 0, 0, 1, 1 )
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 22, 22, 22 )
+margin = Rect2( 0, 0, 1, 1 )
+filter_clip = true
+
+[sub_resource type="Environment" id=7]
+background_mode = 4
+tonemap_mode = 3
+tonemap_exposure = 1.1
+tonemap_white = 4.0
+glow_enabled = true
+glow_intensity = 2.17
+glow_blend_mode = 0
+glow_hdr_threshold = 0.61
+glow_hdr_luminance_cap = 16.0
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 16.0 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ -24.0 ]
+}
+
+[node name="Pantalla" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Pantalla"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titulo" type="Label" parent="Pantalla/CenterContainer"]
+margin_left = 239.0
+margin_top = 260.0
+margin_right = 784.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 214, 32 )
+custom_fonts/font = SubResource( 2 )
+text = "Elemental War"
+align = 1
+valign = 1
+
+[node name="Button container" type="CenterContainer" parent="Pantalla"]
+anchor_top = 0.6
+anchor_right = 1.008
+anchor_bottom = 0.806667
+margin_right = -8.19202
+margin_bottom = 116.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pantalla/Button container"]
+margin_left = 477.0
+margin_top = 88.0
+margin_right = 547.0
+margin_bottom = 152.0
+custom_constants/separation = 60
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jugar" type="TextureButton" parent="Pantalla/Button container/HBoxContainer"]
+modulate = Color( 0.117647, 1, 0, 1 )
+margin_right = 70.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 70, 64 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="Tween" type="Tween" parent="Pantalla/Button container/HBoxContainer"]
+
+[node name="Instrucciones" type="Label" parent="Pantalla"]
+anchor_left = 0.541992
+anchor_top = 0.04
+anchor_right = 0.899414
+anchor_bottom = 0.146667
+custom_fonts/font = SubResource( 3 )
+text = "Instrucciones"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tutorial" type="Label" parent="Pantalla/Instrucciones"]
+anchor_left = -0.969945
+anchor_top = 1.125
+anchor_right = 1.12842
+anchor_bottom = 2.76563
+custom_fonts/font = SubResource( 4 )
+text = "WASD o Flechas de dirección para moverte, mantén Click Izquierdo para disparar, mantén pulsado Shift para moverte más rápido.
+Dispara a los atomos para estabilizarlos y trata de conseguir la mayor cantidad de puntos posibles"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Music Toggle" type="TextureButton" parent="."]
+anchor_left = 0.0361328
+anchor_top = 0.0333334
+anchor_right = 0.103516
+anchor_bottom = 0.148333
+margin_right = -1.66226
+margin_bottom = 15.64
+rect_scale = Vector2( 3, 3 )
+toggle_mode = true
+keep_pressed_outside = true
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 7 )
+
+[node name="Musica de fondo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -5.943
+autoplay = true
+[connection signal="mouse_entered" from="Pantalla/Button container/HBoxContainer/Jugar" to="." method="_on_Jugar_mouse_entered"]
+[connection signal="mouse_exited" from="Pantalla/Button container/HBoxContainer/Jugar" to="." method="_on_Jugar_mouse_exited"]
+[connection signal="pressed" from="Pantalla/Button container/HBoxContainer/Jugar" to="." method="_on_Jugar_pressed"]
+[connection signal="toggled" from="Music Toggle" to="Music Toggle" method="_on_Music_Toggle_toggled"]

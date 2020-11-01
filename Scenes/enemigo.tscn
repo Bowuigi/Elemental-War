@@ -1,0 +1,142 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Sprites/Átomo enemigo Juego.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/enemigo.gd" type="Script" id=2]
+[ext_resource path="res://Assets/JosefinSans-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Sprites/Enemy Atom Hit.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Heart.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Otros/hit.wav" type="AudioStream" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Hit",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Normal",
+"speed": 8.0
+} ]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 26.7
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="enemigo" type="KinematicBody2D"]
+light_mask = 127
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+animation = "Normal"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 27, 0 )
+collision_mask = 2147483649
+
+[node name="Info container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 24.0
+margin_bottom = 35.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element container" type="CenterContainer" parent="Info container"]
+margin_right = 24.0
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Element info" type="Label" parent="Info container/Element container"]
+margin_left = -11.0
+margin_top = -10.0
+margin_right = 11.0
+margin_bottom = 10.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 7 )
+text = "Fe"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hp container" type="CenterContainer" parent="Info container"]
+margin_top = 20.0
+margin_right = 24.0
+margin_bottom = 20.0
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Info container/Hp container"]
+margin_left = -4.0
+margin_top = -10.0
+margin_right = 3.0
+margin_bottom = 10.0
+alignment = 1
+
+[node name="HP" type="Label" parent="Info container/Hp container/HBoxContainer"]
+margin_right = 7.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 8 )
+text = "1"
+
+[node name="Corazon" type="Sprite" parent="Info container/Hp container/HBoxContainer"]
+position = Vector2( 20, 8 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Hit SFX" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
+stream = ExtResource( 6 )
+volume_db = -2.971
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

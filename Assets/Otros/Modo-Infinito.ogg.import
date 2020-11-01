@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Modo-Infinito.ogg-ea0974ce477467b8082365661b46310a.oggstr"
+
+[deps]
+
+source_file="res://Assets/Otros/Modo-Infinito.ogg"
+dest_files=[ "res://.import/Modo-Infinito.ogg-ea0974ce477467b8082365661b46310a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
